@@ -272,10 +272,10 @@ h('div',{style:{flex:1}},h('span',{style:{fontSize:9,color:tc,fontFamily:'monosp
 b[5]==='s'&&!dn&&h('div',{style:{fontSize:7,color:tc,cursor:'pointer',padding:'2px 6px',border:'1px solid '+tc+'40',borderRadius:10},onClick:e=>{e.stopPropagation();go("focus")}},'▶'))})),
 
 // Meals row
-h('div',{style:{display:'flex',gap:3,marginBottom:8}},...(D.mealList||MEALS).map((m,i)=>h('div',{key:i,style:{...Z.pill,fontSize:9,padding:'3px 7px',background:todayMeals.includes(i)?'#D4943C15':'#0C0C0E',borderColor:todayMeals.includes(i)?'#D4943C30':'#151518',color:todayMeals.includes(i)?'#D4943C':'#333'},onClick:()=>logMeal(i)},m))),
+h('div',{style:{display:'flex',gap:3,marginBottom:8}},...(D.mealList||D.mealList).map((m,i)=>h('div',{key:i,style:{...Z.pill,fontSize:9,padding:'3px 7px',background:todayMeals.includes(i)?'#D4943C15':'#0C0C0E',borderColor:todayMeals.includes(i)?'#D4943C30':'#151518',color:todayMeals.includes(i)?'#D4943C':'#333'},onClick:()=>logMeal(i)},m))),
 
 // Supps (evening)
-now.getHours()>=20&&h('div',{style:{display:'flex',gap:3,marginBottom:8}},...(D.suppList||SUPPLEMENTS).map((s,i)=>h('div',{key:i,style:{...Z.pill,fontSize:9,padding:'3px 7px',background:todaySupps.includes(i)?'#9B8EC415':'#0C0C0E',borderColor:todaySupps.includes(i)?'#9B8EC430':'#151518',color:todaySupps.includes(i)?'#9B8EC4':'#333'},onClick:()=>logSupp(i)},s))),
+now.getHours()>=20&&h('div',{style:{display:'flex',gap:3,marginBottom:8}},...(D.suppList||D.suppList).map((s,i)=>h('div',{key:i,style:{...Z.pill,fontSize:9,padding:'3px 7px',background:todaySupps.includes(i)?'#9B8EC415':'#0C0C0E',borderColor:todaySupps.includes(i)?'#9B8EC430':'#151518',color:todaySupps.includes(i)?'#9B8EC4':'#333'},onClick:()=>logSupp(i)},s))),
 
 // Countdowns
 ...(D.countdowns||[]).slice(0,2).map(cd=>{const dl=Math.max(0,Math.ceil((new Date(cd.date)-now)/864e5));const doneMl=(cd.milestones||[]).filter(m=>m.done).length;const totMl=(cd.milestones||[]).length;
@@ -516,7 +516,7 @@ h('div',{style:{...Z.card,marginTop:8}},h('div',{style:{fontSize:12,fontWeight:6
 ...(D.suppList||[]).map((s,i)=>h('div',{key:i,style:{display:'flex',justifyContent:'space-between',padding:'3px 0'}},h('span',{style:{fontSize:11,color:'#888'}},s),h('button',{style:{background:'none',border:'none',color:'#1E1E22',fontSize:9,cursor:'pointer'},onClick:()=>up(p=>({...p,suppList:(p.suppList||[]).filter((_,j)=>j!==i)}))},'✕'))),
 h('div',{style:{display:'flex',gap:4,marginTop:4}},h('input',{style:Z.inp,placeholder:'Nuovo integratore...',value:iv('ns'),onChange:e=>I('ns',e.target.value),onKeyDown:e=>{if(e.key==='Enter'&&iv('ns')){up(p=>({...p,suppList:[...(p.suppList||[]),iv('ns')]}));I('ns','')}}}),h('button',{style:Z.btn,onClick:()=>{if(!iv('ns'))return;up(p=>({...p,suppList:[...(p.suppList||[]),iv('ns')]}));I('ns','')}},'+'))),
 h('div',{style:{...Z.card,marginTop:8}},h('button',{style:{width:'100%',padding:'8px',borderRadius:6,border:'1px solid #E07A5F20',background:'#E07A5F08',color:'#E07A5F',fontSize:11,cursor:'pointer'},onClick:()=>{if(confirm('Reset tutti i dati?')){localStorage.removeItem(LS);location.reload()}}},'Reset app (cancella tutto)')),
-is15&&h('div',{style:{...Z.card,marginTop:8,borderColor:'#D4943C20'}},h('div',{style:{fontSize:12,fontWeight:600,color:'#D4943C'}},'💰 Review finanziario disponibile'))),
+is15&&h('div',{style:{...Z.card,marginTop:8,borderColor:'#D4943C20'}},h('div',{style:{fontSize:12,fontWeight:600,color:'#D4943C'}},'💰 Review finanziario disponibile')))),
 
 // ═══ NAV ═══
 h('div',{style:Z.nav},
